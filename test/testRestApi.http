@@ -1,0 +1,11 @@
+@URL=https://i4s8aljz93.execute-api.eu-north-1.amazonaws.com/prod/
+
+POST {{URL}} HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "sourceLang": "en",
+    "text": "Take a look at the new AWS CDK!",
+    "targetLang": "ru"
+}
