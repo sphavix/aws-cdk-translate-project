@@ -25,7 +25,15 @@ export class AwsCdkTranslateProjectStack extends cdk.Stack {
       initialPolicy: [translateAccessPolicy]
     });
 
-    const restApi = new apigateway.RestApi(this, "timeOfDayApi");
+    const restApi = new apigateway.RestApi(this, "timeOfDayApi", {
+      restApiName: "Time of Day Service",
+      description: "This service serves a time of day message.",
+      defaultCorsPreflightOptions: {
+        allowOrigins: apigateway.Cors.ALL_ORIGINS, // Allow all origins
+        allowMethods: apigateway.Cors.ALL_METHODS, // Allow all HTTP methods
+        allowHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+      },
+    });
     restApi.root.addMethod("POST", new apigateway.LambdaIntegration(lambdaFunc));
   }
 }

@@ -33,6 +33,12 @@ export const index: lambda.APIGatewayProxyHandlerV2 = async function(event:
 
         return {
             statusCode: 200,
+            headers: {
+                "Allow-Control-Allow-Origin": "*",
+                "Allow-Control-Allow-Credentials": true,
+                "Allow-Control-Allow-Methods": "*",
+                "Allow-Control-Allow-Headers": "*",
+            },
             body: JSON.stringify(response),
         };
     }
@@ -40,7 +46,13 @@ export const index: lambda.APIGatewayProxyHandlerV2 = async function(event:
         console.error(e);
         return {
             statusCode: 500,
-            body: e.toString(),
+            headers: {
+                "Allow-Control-Allow-Origin": "*",
+                "Allow-Control-Allow-Credentials": true,
+                "Allow-Control-Allow-Methods": "*",
+                "Allow-Control-Allow-Headers": "*",
+            },
+            body: JSON.stringify(e.toString()),
         };
     }
 }
